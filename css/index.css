@@ -1,0 +1,122 @@
+body{
+    background-color: #e3e8eb;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.titleAndInput{
+    font-weight: 700;
+    margin-top: 10%;
+    color: #0a1e3d;
+    text-align: center;
+}
+
+.import{
+    text-align: center;
+}
+
+input[type='file'] {
+    display: none
+  }
+
+  
+  .button-import{
+      background-color: dodgerblue;
+      width: 100%;
+      padding: 15px 0 15px 0 ;
+      color:  white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s ease-in;
+  }
+
+  .button-import:hover{
+      background-color: #fff;     
+      color:dodgerblue;
+  }
+
+  .pt5Percent{
+      padding-top: 5%;
+  }
+
+  .input-text{
+      text-align: left !important;
+      width: 100%;
+      padding: 15px 0 15px 20px;
+      color: #000;
+      font-weight: 700;
+      font-style: italic;
+      border: none; 
+  }
+
+  .folha{
+      background-color: #fff;
+      font-weight: 700;
+      color: #000;
+      padding: 5% 0 5% 0;
+     
+  }
+
+  .folha p{
+      margin: 0 10% 0 10%;
+  }
+
+  .alignC{
+      text-align: center;
+  }
+
+  [data-animation]{
+      opacity: 0;
+      transition: 0.5s;
+  }
+
+  [data-animation="bottom"]{
+    transform: translate3d(0, 100px, 0);
+  }
+
+  [data-animation].animate{
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+.pb5Percent{
+    padding-bottom: 5%;
+}
+
+.social{
+    color:#fff;
+    cursor: pointer;
+    font-size: 36px;
+    padding: 2px;
+}
+
+.social:hover{
+   color:  #000;
+}
+
+.txtFooter{
+    color: #fff;
+}
+
+.txtFooter h1{
+    font-weight: 700;
+    font-size: 3.0rem;
+}
+
+
+.black{
+    color: black;
+    font-weight: 700;
+}
+
+.blue{
+    background-color: dodgerblue;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    text-alignCOnlyMobile{
+        text-align: center !important;
+    }
+}

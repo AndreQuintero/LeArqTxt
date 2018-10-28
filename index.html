@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Importador de Arquivo TXT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    
+  
+</head>
+
+<body>
+    <section class="container-fluid">
+
+        <div class="row titleAndInput">
+            <div class="col-lg-5 offset-lg-3">
+                <h1>Importador de Arquivos TXT</h1>
+                <p>Utilize arquivos txt utilizando | (pipe) como separador</p>
+            </div>
+        </div>
+        <div class="row import pt5Percent">
+            <div class="col-lg-2 offset-lg-3">
+                <label class="button-import" for='importador'>Importar &#187;</label>
+                <input type="file" id="importador" accept=".txt">
+            </div>
+            <div class="col-lg-4">
+                <input class="input-text" placeholder="Importe um Arquivo .txt" type="text" readonly id="text-input">
+            </div>
+        </div>
+    </section>
+    <section class="container  pt5Percent alignC pb5Percent">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 folha" data-animation="bottom" id="folhaDiv">
+                <p id="text-table"></p>
+            </div>  
+        </div>
+    </section>
+
+    <footer class="container-fluid blue pb5Percent ">
+
+            <div class="row  alignC txtFooter pt5Percent">
+                <div class="col-lg-4 offset-lg-4">
+                    <h1>Importador TXT</h1>
+                </div>
+            </div>
+            <div class="row pt5percent txtFooter text-alignCOnlyMobile">
+                <div class="col-sm-12 col-md-5 offset-md-1 col-lg-3 offset-lg-3 text-align-center-only-mobile">
+                    <h3>Contact</h3>
+                        <p><span class="black">Phone: </span>(xx) 0000-00000<br>
+                        <span class="black">Email: </span>andre.quintero96@gmail.com</p>
+                </div>
+                <div class="col-sm-12 col-md-5 offset-md-1 col-lg-3 offset-lg-1 text-align-center-only-mobile">
+                    <h3>Location</h3>
+                        <p><span class="black">Address: </span> XXXXXXX Avenue, 408.<br>
+                            XXXXXXX Itu-SP<br>
+                            10000-000 Brazil</p>
+                    </div>
+            </div>
+    
+        <div class="row pt5percent">
+            <div class="col-sm-6 col-md-6 offset-sm-2 offset-md-3 col-lg-4 offset-lg-4 alignC">
+                <a href="https://www.facebook.com/andre.quintero.37"><i class="fa fa-facebook-square fa-stack-3x social"></i></a>
+                <i class="fa fa-twitter fa-stack-3x social"></i>	
+                <a href="https://github.com/AndreQuintero"><i class="fa fa-github fa-stack-3x social"></i></a>
+                <i class="fa fa-google-plus fa-stack-3x social"></i>	
+                <i class="fa fa-youtube-play fa-stack-3x social"></i>
+            </div>
+                                
+        </div>
+    </footer>
+<script>
+    let inputText = document.getElementById("text-input");
+let inputFile = document.getElementById("importador");
+let textTable = document.getElementById("text-table");
+let folhaDiv = document.getElementById("folhaDiv");
+
+
+function copiaCaminho(){
+    
+    let caminho = inputFile.value.toString().replace('fakepath', '');
+
+    inputText.value = caminho;
+    leArquivo();
+}
+
+inputFile.addEventListener('change', function(){
+    copiaCaminho();
+});
+
+
+
+
+function leArquivo(){
+    let arq = inputFile.files[0];
+
+    let reader = new FileReader();
+    let texto = "";
+   
+    let fileReader = new FileReader();
+
+    fileReader.onload = function(e){
+        animateTable(false);
+        texto += fileReader.result;
+        separaPipe(texto);
+       
+    };
+    fileReader.readAsText(arq, 'ISO-8859-1');
+
+    
+}
+
+function separaPipe(texto){
+
+    texto = texto.split("\n");
+    console.log(texto);
+    let message = juntaTexto(texto);
+    console.log(message);
+
+    let tableText = ""; 
+
+    if(temPipe(message)){
+ 
+        message = message.split('|');
+        
+        tableText += juntaTexto(message);
+    }else{
+        tableText += "Por Favor, Selecione um TXT com o | (Pipe). ";
+    }
+   
+
+    setTimeout(function(){ animateTable(true); }, 500);
+    textTable.innerHTML = tableText;
+}
+
+
+function temPipe(texto){
+    let pipe = false;
+    for(let i = 0;i<=texto.length - 1; i++){
+        if(texto[i] === '|'){
+
+            pipe = true;
+            break;
+        }
+    }
+    return pipe;
+}
+
+function juntaTexto(texto){
+    let message = "";
+    for(let i =0;i<= texto.length -1; i++){
+      
+            message += texto[i] + " ";
+        
+    }
+    return message;
+}
+
+function animateTable(bool){
+
+    if(bool === false){
+        folhaDiv.classList.remove('animate');
+    }else{
+        folhaDiv.classList.add('animate');
+    }
+
+}
+</script>
+</body>
+</html>
