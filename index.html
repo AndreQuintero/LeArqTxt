@@ -97,7 +97,7 @@ inputFile.addEventListener('change', function(){
 function leArquivo(){
     let arq = inputFile.files[0];
 
-    let reader = new FileReader();
+   
     let texto = "";
    
     let fileReader = new FileReader();
@@ -162,6 +162,7 @@ function juntaTexto(texto){
 function animateTable(bool){
 
     if(bool === false){
+        textTable.innerHTML = "";
         folhaDiv.classList.remove('animate');
     }else{
         folhaDiv.classList.add('animate');
